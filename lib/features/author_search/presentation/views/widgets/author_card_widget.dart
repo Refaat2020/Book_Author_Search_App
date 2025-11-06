@@ -42,10 +42,6 @@ class AuthorCardWidget extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Author Image
-                  _buildAuthorImage(),
-                  SizedBox(width: 16.w),
-
                   // Author Info
                   Expanded(
                     child: Column(
@@ -85,41 +81,6 @@ class AuthorCardWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildAuthorImage() {
-    final imageUrl = AppUrl.getAuthorImageUrl(author.key);
-
-    return Container(
-      width: 80.w,
-      height: 80.w,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12.r),
-        gradient: AppColors.primaryGradient,
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12.r),
-        child: CachedNetworkImage(
-          imageUrl: imageUrl,
-          fit: BoxFit.cover,
-          placeholder: (context, url) => Container(
-            color: AppColors.primary.withOpacity(0.1),
-            child: Icon(
-              Icons.person_rounded,
-              size: 40.sp,
-              color: AppColors.primary,
-            ),
-          ),
-          errorWidget: (context, url, error) => Container(
-            decoration: BoxDecoration(gradient: AppColors.primaryGradient),
-            child: Icon(
-              Icons.person_rounded,
-              size: 40.sp,
-              color: AppColors.textWhite,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 
   Widget _buildAuthorName(BuildContext context) {
     return Text(

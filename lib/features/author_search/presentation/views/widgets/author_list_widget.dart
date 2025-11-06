@@ -11,7 +11,7 @@ class AuthorListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final crossAxisCount = ResponsiveUtils.getCrossAxisCount(context);
-
+    print(crossAxisCount);
     if (crossAxisCount == 1) {
       return ListView.builder(
         padding: EdgeInsets.only(top: 16.h),
@@ -26,7 +26,6 @@ class AuthorListWidget extends StatelessWidget {
       padding: EdgeInsets.only(top: 16.h),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxisCount,
-        childAspectRatio: 3.5,
         crossAxisSpacing: 16.w,
         mainAxisSpacing: 16.h,
       ),

@@ -5,6 +5,7 @@ import 'package:book_author_search_app/features/author_search/presentation/cubit
 import 'package:book_author_search_app/file_export.dart';
 
 import '../../../../../core/services/debouncer_services.dart';
+import '../widgets/page_header_widget.dart';
 import '../widgets/search_bar_widget.dart';
 import '../widgets/author_list_widget.dart';
 
@@ -41,7 +42,7 @@ class _AuthorSearchPageState extends State<AuthorSearchPage> {
         child: SafeArea(
           child: Column(
             children: [
-              _buildHeader(),
+              PageHeaderWidget(),
               Expanded(
                 child: Container(
                   decoration: BoxDecoration(
@@ -62,54 +63,6 @@ class _AuthorSearchPageState extends State<AuthorSearchPage> {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildHeader() {
-    return Padding(
-      padding: ResponsiveUtils.getPagePadding(context),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Book Authors',
-                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                      color: AppColors.textWhite,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 4.h),
-                  Text(
-                    'Discover amazing authors',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: AppColors.textWhite.withOpacity(0.9),
-                    ),
-                  ),
-                ],
-              ),
-              Container(
-                padding: EdgeInsets.all(12.w),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
-                child: Icon(
-                  Icons.menu_book_rounded,
-                  color: AppColors.textWhite,
-                  size: 28.sp,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 8.h),
-        ],
       ),
     );
   }

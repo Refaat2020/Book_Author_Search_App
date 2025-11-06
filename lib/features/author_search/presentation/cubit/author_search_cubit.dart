@@ -12,7 +12,6 @@ class AuthorSearchCubit extends Cubit<AuthorSearchState> {
 
   Future<void> searchForAuthors(String authorName) async {
     emit(AuthorSearchLoading());
-    print(authorName);
     final result = _authorService.searchForAuthor(authorName);
     await result.execute(
       onFailed: (failed) =>

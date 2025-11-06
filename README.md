@@ -55,7 +55,7 @@ The project follows Clean Architecture principles with three main layers:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/YOUR_USERNAME/book_author_search.git
+git clone https://github.com/Refaat2020/Book_Author_Search_App
 cd book_author_search
 ```
 

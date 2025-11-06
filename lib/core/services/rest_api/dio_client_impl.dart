@@ -17,7 +17,6 @@ class DioClientImpl implements DioClient {
       final response = await request();
       return response.handleResponse();
     } catch (e) {
-      print(e);
       if (e is DioException) {
         throw FailureModel(message: e.handleDioException(e.type), state: 0);
       }
