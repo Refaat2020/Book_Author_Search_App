@@ -1,0 +1,64 @@
+import 'package:book_author_search_app/common/model/failure_model.dart';
+import 'package:book_author_search_app/core/extensions/response_methods.dart';
+import 'package:dio/dio.dart';
+
+import '../../config/dio_options.dart';
+import 'dio_client.dart';
+
+class DioClientImpl implements DioClient {
+  final Dio dio;
+  final DioConfigOptions dioConfigOptions;
+
+  DioClientImpl({required this.dio, required this.dioConfigOptions});
+
+  Future<dynamic> _handleRequest(Future<Response> Function() request) async {
+    try {
+      dio.options = await dioConfigOptions.getBaseOption();
+      final response = await request();
+      return response.handleResponse();
+    } catch (e) {
+      print(e);
+      if (e is DioException) {
+        throw FailureModel(message: e.handleDioException(e.type), state: 0);
+      }
+      throw Exception(e);
+    }
+  }
+
+  @override
+  Future<dynamic> getRequest(
+    String apiUrl, {
+    Map<String, dynamic>? prams,
+    bool? responseBytes,
+  }) async {
+    return _handleRequest(
+      () => dio.get(
+        apiUrl,
+        queryParameters: prams,
+        options: Options(
+          responseType: responseBytes == true ? ResponseType.bytes : null,
+        ),
+      ),
+    );
+  }
+
+  @override
+  Future<dynamic> postRequest(
+    dynamic body,
+    String apiUrl, {
+    bool hasImages = false,
+  }) async {
+    if (apiUrl.isEmpty) {
+      throw ArgumentError('API URL cannot be empty.');
+    }
+    if (body == null) {
+      throw ArgumentError('Body cannot be null for POST requests.');
+    }
+    return _handleRequest(
+      () => dio.post(
+        apiUrl,
+        data: hasImages == true ? FormData.fromMap(body) : body,
+      ),
+    );
+  }
+}
