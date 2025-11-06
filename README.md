@@ -84,17 +84,14 @@ lib/
 │   ├── services/       # Shared services (e.g., ThemeService, DI)
 │   └── utils/          # Utility functions
 ├── features/
-│   ├── kanban_board/
-│   │   ├── data/
-│   │   │   ├── data_source/
-│   │   │   ├── models/
-│   │   │   └── repository/
-│   │   ├── domain/     # Cubits, Services
-│   │   └── presentation/
-│   └── task_management/
+│   ├── author_search/
 │       ├── data/
-│       ├── domain/
+│       │   ├── data_source/
+│       │   ├── models/
+│       │   └── repository/
+│       ├── domain/     # Entities, Services
 │       └── presentation/
+│  
 └── main.dart           # Entry point of the app
 ```
 
